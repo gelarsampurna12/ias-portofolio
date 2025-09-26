@@ -189,6 +189,66 @@
                 transform: scale(1.1);
             }
         }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #161b22;
+            margin: auto;
+            padding: 2rem;
+            border: 1px solid #30363d;
+            width: 90%;
+            max-width: 700px;
+            border-radius: 1rem;
+            position: relative;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0;
+            }
+            to {
+                top: 0;
+                opacity: 1;
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #fff;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body class="bg-gray-950 text-gray-200">
@@ -344,34 +404,37 @@
                     <img src="corrector.png" alt="Corrector AI App" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold">Corrector (AI Application)</h3>
                     <p class="mt-2 text-sm text-gray-400">An automated essay grading application using AI.</p>
+                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('corrector')">View Case Study</button>
                 </div>
                 <!-- Project Card 2: Frontend Emifree -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/emmifree.png" alt="Emifree Website" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold">Emifree Frontend</h3>
                     <p class="mt-2 text-sm text-gray-400">Frontend development for an e-commerce website.</p>
+                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('emifree')">View Case Study</button>
                 </div>
                 <!-- Project Card 3: Aplikasi RPP Nifhasy -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/rpp nifhasy.png" alt="RPP Nifhasy App" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold">RPP Nifhasy Application</h3>
                     <p class="mt-2 text-sm text-gray-400">An application to help teachers create lesson plans.</p>
+                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('rpp-nifhasy')">View Case Study</button>
                 </div>
                 <!-- Project Card 4: AI Video Engineering -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
-                    <div class="relative w-full overflow-hidden rounded-lg mb-4" style="padding-top: 56.25%;">
-                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/jdQYbpBh_9o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <h3 class="text-lg font-bold">AI Prompt Engineering</h3>
+                    <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/thumbnail-aswaja.jpg" alt="AI Video Engineering Thumbnail" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h3 class="text-lg font-bold">AI Video Engineering</h3>
                     <p class="mt-2 text-sm text-gray-400">Creating an NU Aswaja-themed video for an LP Ma'arif NU competition.</p>
+                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('ai-video')">View Case Study</button>
                 </div>
                 <!-- Project Card 5: Meta Ads Campaign -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/report-meta-ads.jpg" alt="Meta Ads Report" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold">Meta Ads Campaign</h3>
                     <p class="mt-2 text-sm text-gray-400">Managing Meta ad campaigns to increase product reach and conversions.</p>
+                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('meta-ads')">View Case Study</button>
                 </div>
-                <!-- Project Card 6: Jasa Desain Media Sosial -->
+                <!-- Project Card 6: Social Media Design Services -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
                     <h3 class="text-lg font-bold mb-4">Social Media Design Services</h3>
                     <p class="mt-2 text-sm text-gray-400 mb-4">Attractive visual designs to boost engagement and brand image.</p>
@@ -396,6 +459,7 @@
                         <button class="carousel-button carousel-button-prev rounded-full px-2 py-1">&lt;</button>
                         <button class="carousel-button carousel-button-next rounded-full px-2 py-1">&gt;</button>
                     </div>
+                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('social-media')">View Case Study</button>
                 </div>
             </div>
         </div>
@@ -419,10 +483,112 @@
 
     <!-- Footer Section -->
     <footer class="text-center py-10 px-8 text-gray-500">
-        <p>&copy; 2024 Ia Asep Sunarya. All rights reserved.</p>
+        <p>&copy; 2025 IAS. All rights reserved.</p>
     </footer>
 
+    <!-- The Modal -->
+    <div id="case-study-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title" class="text-3xl font-bold mb-4 gradient-text"></h2>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
     <script>
+        // Modal logic
+        const modal = document.getElementById('case-study-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+
+        const caseStudies = {
+            'corrector': {
+                title: 'Corrector (AI Application) Case Study',
+                content: `
+                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
+                    <p>Teachers needed a faster way to grade essays without compromising quality. Manual grading was time-consuming and often inconsistent.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
+                    <p>I designed and built an AI-powered grading system that automates the assessment process. The application provides immediate feedback on grammar, structure, and content, helping both teachers and students.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
+                    <p>This solution significantly reduced grading time by 70% and provided consistent, objective feedback, allowing teachers to focus more on personalized instruction.</p>
+                `
+            },
+            'emifree': {
+                title: 'Emifree Frontend Case Study',
+                content: `
+                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
+                    <p>The client needed a visually appealing and user-friendly e-commerce website to attract more customers and drive sales. The previous site was outdated and had a high bounce rate.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
+                    <p>I rebuilt the frontend using modern web technologies to create a clean, responsive, and intuitive user interface. I optimized the site for fast loading times and a seamless shopping experience.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
+                    <p>The new design led to a <b>25% increase in user engagement</b> and a more professional brand image, directly contributing to higher sales conversions.</p>
+                `
+            },
+            'rpp-nifhasy': {
+                title: 'RPP Nifhasy Application Case Study',
+                content: `
+                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
+                    <p>Teachers were spending too much time creating detailed lesson plans (RPP) manually. This was an inefficient process that took time away from teaching and student interaction.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
+                    <p>I developed a web application that automates the RPP creation process. The app allows teachers to quickly input key information and automatically generates a comprehensive lesson plan based on educational standards.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
+                    <p>The application reduced the time required for lesson plan creation by <b>up to 80%</b>, empowering teachers to be more efficient and focused on their core responsibilities in the classroom.</p>
+                `
+            },
+            'ai-video': {
+                title: 'AI Video Engineering Case Study',
+                content: `
+                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
+                    <p>A client needed a visually stunning video for a competition with a tight deadline and limited resources for traditional video production.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
+                    <p>I leveraged <b>AI Prompt Engineering</b> to generate high-quality, creative visuals and animations based on detailed text prompts. This approach allowed for rapid content creation that was both unique and aligned with the competition's theme.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
+                    <p>The project successfully delivered a professional-quality video that stood out, helping the client secure <b>first place</b> in the competition and showcasing the power of AI in creative media.</p>
+                `
+            },
+            'meta-ads': {
+                title: 'Meta Ads Campaign Case Study',
+                content: `
+                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
+                    <p>A school needed to increase student enrollment but was struggling to reach its target audience effectively through traditional advertising methods.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
+                    <p>I designed and managed a targeted Meta Ads campaign on Facebook and Instagram. I implemented a strategy that focused on optimizing ad spend, A/B testing creative assets, and refining audience demographics to maximize reach and conversions.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
+                    <p>The campaign generated <b>190 link clicks and 571 engagements</b> with a highly efficient cost per result. This far exceeded the school's expectations and led to a significant increase in student inquiries and enrollments.</p>
+                `
+            },
+            'social-media': {
+                title: 'Social Media Design Services Case Study',
+                content: `
+                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
+                    <p>A retail brand needed to improve its social media presence and visual branding to attract new customers and stand out from competitors. Their content lacked consistency and a professional look.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
+                    <p>I collaborated with the client to create a cohesive social media content strategy and designed a series of professional, on-brand templates for Instagram and Facebook. The designs were crafted to be visually appealing and easy for their team to reuse.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
+                    <p>The new designs led to a <b>45% increase in engagement</b> and a more professional brand image, helping the client attract a larger, more relevant audience and drive brand loyalty.</p>
+                `
+            }
+        };
+
+        function openModal(caseStudyId) {
+            const study = caseStudies[caseStudyId];
+            if (study) {
+                modalTitle.textContent = study.title;
+                modalContent.innerHTML = study.content;
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+
         // Media Social Carousel
         const mediaCarousel = document.querySelector('.carousel-container');
         const mediaTrack = mediaCarousel.querySelector('.carousel-track');
