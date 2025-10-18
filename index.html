@@ -255,7 +255,6 @@
 </head>
 <body class="bg-gray-950 text-gray-200">
 
-    <!-- Header & Navigation -->
     <header class="p-4 relative z-20">
         <div class="container mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-4">
@@ -264,18 +263,19 @@
                     <p class="text-sm text-gray-400">Available for new projects</p>
                 </div>
             </div>
-            <nav class="flex items-center space-x-6">
-                <a href="#" class="text-gray-400 hover:text-white transition-colors header-link">Home</a>
-                <a href="#about" class="text-gray-400 hover:text-white transition-colors header-link">About</a>
-                <a href="#projects" class="text-gray-400 hover:text-white transition-colors header-link">Projects</a>
-                <a href="#contact" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg">Contact Me</a>
-            </nav>
+            <div class="flex items-center space-x-6">
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors header-link">Home</a>
+                    <a href="#about" class="text-gray-400 hover:text-white transition-colors header-link">About</a>
+                    <a href="#projects" class="text-gray-400 hover:text-white transition-colors header-link">Projects</a>
+                    <a href="#contact" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg">Contact Me</a>
+                </nav>
+                <img src="logo-fajar-komunika.png" alt="Logo PT Fajar Komunika" class="h-12">
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="relative py-20 px-4 min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Animated Glowing Lights -->
         <div class="glowing-light light-1"></div>
         <div class="glowing-light light-2"></div>
 
@@ -297,42 +297,41 @@
         </div>
     </section>
 
-    <!-- Career Path Section -->
     <section id="about" class="py-20 px-4">
         <div class="container mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-3xl font-bold text-center mb-6 gradient-text">About Me</h2>
+                <p class="text-xl text-gray-300 leading-relaxed">
+                    Saat ini saya menjabat sebagai <span class="font-bold text-white">CEO dan Marketing Executive</span> di <span class="font-semibold text-white">PT Fajar Komunika Indonesia</span>. Saya bersemangat dalam menggabungkan teknologi dan strategi pemasaran untuk mendorong pertumbuhan bisnis dan menciptakan solusi digital yang inovatif.
+                </p>
+            </div>
+
             <h2 class="text-3xl font-bold text-center mb-12">Career Journey</h2>
             <div class="mind-map-container">
-                <!-- Node 1: PT Patra Nusa Data -->
                 <div class="mind-map-node glowing-shadow">
                     <h3 class="text-xl font-bold">PT Patra Nusa Data</h3>
                     <p class="text-gray-400">Data Entry | April 2007 - May 2011</p>
                 </div>
-                <!-- Node 2: PT Bank Mandiri -->
                 <div class="mind-map-node glowing-shadow">
                     <h3 class="text-xl font-bold">PT Bank Mandiri Tbk</h3>
                     <p class="text-gray-400">Marketing Sales | December 2011 - December 2012</p>
                 </div>
-                <!-- Node 3: PT Jatisari Sri Rejeki -->
                 <div class="mind-map-node glowing-shadow">
                     <h3 class="text-xl font-bold">PT Jatisari Sri Rejeki</h3>
                     <p class="text-gray-400">Staff Administration | March 2012 - May 2017</p>
                 </div>
-                <!-- Node 4: PT Ventra Sentosa International -->
                 <div class="mind-map-node glowing-shadow">
                     <h3 class="text-xl font-bold">PT Ventra Sentosa International</h3>
                     <p class="text-gray-400">Business Partner | June 2017 - April 2019</p>
                 </div>
-                <!-- Node 5: PT Nitou Lemo Indonesia -->
                 <div class="mind-map-node glowing-shadow">
                     <h3 class="text-xl font-bold">PT Nitou Lemo Indonesia</h3>
                     <p class="text-gray-400">Staff Delivery Transporter | August 2019 - December 2019</p>
                 </div>
-                <!-- Node 6: PT Fakonindo Indonesia -->
                 <div class="mind-map-node glowing-shadow">
                     <h3 class="text-xl font-bold">PT Fakonindo Indonesia</h3>
                     <p class="text-gray-400">Web Development | January 2020 - July 2020</p>
                 </div>
-                <!-- Node 7: SMA Al-Muhajirin -->
                 <div class="mind-map-node glowing-shadow end-node">
                     <h3 class="text-xl font-bold">SMA Al-Muhajirin Purwakarta</h3>
                     <p class="text-gray-400">IT & Digital Marketing Teacher | August 2020 - Present</p>
@@ -341,7 +340,6 @@
         </div>
     </section>
 
-    <!-- Education Section -->
     <section class="py-20 px-4">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center mb-12">Education</h2>
@@ -356,12 +354,10 @@
         </div>
     </section>
 
-    <!-- Specializations Section -->
     <section class="py-20 px-4">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl font-bold text-center mb-12">My Specializations</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Web Development Card -->
                 <div class="bg-card p-8 rounded-xl shadow-lg glowing-shadow">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1e90ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4">
                         <polyline points="16 18 22 12 16 6"></polyline>
@@ -370,7 +366,6 @@
                     <h3 class="text-2xl font-bold gradient-text">Web Development</h3>
                     <p class="mt-4 text-gray-400">Creating responsive and dynamic websites with a focus on performance and user experience.</p>
                 </div>
-                <!-- Digital Marketing Card -->
                 <div class="bg-card p-8 rounded-xl shadow-lg glowing-shadow">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00bfff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4">
                         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
@@ -381,7 +376,6 @@
                     <h3 class="text-2xl font-bold gradient-text">Digital Marketing</h3>
                     <p class="mt-4 text-gray-400">Managing ad campaigns on Google, Meta, and TikTok to reach the right audience.</p>
                 </div>
-                <!-- Graphic Design Card -->
                 <div class="bg-card p-8 rounded-xl shadow-lg glowing-shadow">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1e90ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4">
                         <circle cx="12" cy="12" r="10"></circle>
@@ -396,47 +390,40 @@
         </div>
     </section>
     
-    <!-- Projects Section -->
     <section id="projects" class="py-20 px-4">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center mb-12">Featured Projects</h2>
             <div class="project-card-container">
-                <!-- Project Card 1: Corrector AI -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
                     <img src="corrector.png" alt="Corrector AI App" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold">Corrector (AI Application)</h3>
                     <p class="mt-2 text-sm text-gray-400">An automated essay grading application using AI.</p>
                     <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('corrector')">View Case Study</button>
                 </div>
-                <!-- Project Card 2: Frontend Emifree -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/emmifree.png" alt="Emifree Website" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold">Emifree Frontend</h3>
                     <p class="mt-2 text-sm text-gray-400">Frontend development for an e-commerce website.</p>
                     <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('emifree')">View Case Study</button>
                 </div>
-                <!-- Project Card 3: Aplikasi RPP Nifhasy -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/rpp nifhasy.png" alt="RPP Nifhasy App" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold">RPP Nifhasy Application</h3>
                     <p class="mt-2 text-sm text-gray-400">An application to help teachers create lesson plans.</p>
                     <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('rpp-nifhasy')">View Case Study</button>
                 </div>
-                <!-- Project Card 4: AI Video Engineering -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/thumbnail-aswaja.png" alt="AI Video Engineering Thumbnail" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold">AI Video Engineering</h3>
                     <p class="mt-2 text-sm text-gray-400">Creating an NU Aswaja-themed video for an LP Ma'arif NU competition.</p>
                     <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('ai-video')">View Case Study</button>
                 </div>
-                <!-- Project Card 5: Meta Ads Campaign -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/report-meta-ads.jpg" alt="Meta Ads Report" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold">Meta Ads Campaign</h3>
                     <p class="mt-2 text-sm text-gray-400">Managing Meta ad campaigns to increase product reach and conversions.</p>
                     <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('meta-ads')">View Case Study</button>
                 </div>
-                <!-- Project Card 6: Social Media Design Services -->
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
                     <h3 class="text-lg font-bold mb-4">Social Media Design Services</h3>
                     <p class="mt-2 text-sm text-gray-400 mb-4">Attractive visual designs to boost engagement and brand image.</p>
@@ -467,7 +454,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-20 px-4 text-center">
         <div class="container mx-auto max-w-2xl contact-card p-12 rounded-xl glowing-shadow">
             <h2 class="text-3xl font-bold gradient-text">Ready to Collaborate?</h2>
@@ -483,18 +469,15 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
     <footer class="text-center py-10 px-8 text-gray-500">
         <p>&copy; 2025 IAS. All rights reserved.</p>
     </footer>
 
-    <!-- The Modal -->
     <div id="case-study-modal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal()">&times;</span>
             <h2 id="modal-title" class="text-3xl font-bold mb-4 gradient-text"></h2>
-            <div id="modal-content"></div>
-        </div>
+            <div id="modal-content-body"></div> </div>
     </div>
 
     <script>
@@ -643,3 +626,4 @@
     </script>
 </body>
 </html>
+
