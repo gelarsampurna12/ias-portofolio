@@ -27,7 +27,6 @@
         }
 
         .glowing-shadow {
-            /* Shadow adjusted for light background, using light teal/mint accent */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 15px rgba(110, 231, 183, 0.4); 
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
@@ -57,49 +56,55 @@
             transform: translateY(-8px);
             transition: transform 0.3s ease-in-out;
         }
-        .header-link:hover {
-            color: var(--color-text-dark);
-            text-shadow: 0 0 8px rgba(79, 209, 197, 0.5); /* Soft light shadow */
-            transition: color 0.3s, text-shadow 0.3s;
-        }
-        
-        /* General Layout remains the same */
-        .project-card-container {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 1.5rem;
-            overflow-x: auto; 
-            padding-bottom: 1rem;
-        }
 
-        @media (min-width: 640px) {
-            .project-card-container {
-                grid-template-columns: repeat(2, 1fr);
-                overflow-x: hidden;
-            }
+        /* --- CAROUSEL FIXES --- */
+        .carousel-container {
+            overflow: hidden; 
+            position: relative;
+            height: 250px; /* NEW: Explicit height to hide overflow */
         }
-
-        @media (min-width: 768px) {
-            .project-card-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%; /* Ensure track takes full container height */
         }
-
-        .project-card-container > div {
-            min-width: 280px; 
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            display: flex; /* To center/align the image if needed */
+            justify-content: center;
+            align-items: center;
         }
-        
-        /* Glowing light effect adjusted for light background */
-        .glowing-light {
+        .carousel-item img {
+            max-height: 250px; /* Constrain image height */
+            width: 100%; /* Ensure images fill item width */
+            object-fit: contain; /* Use 'contain' to ensure the full image is visible */
+        }
+        .carousel-button {
             position: absolute;
-            background: radial-gradient(circle, rgba(79, 209, 197, 0.3) 0%, transparent 70%); 
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: pulse-light 10s infinite ease-in-out alternate;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
+        .carousel-button:hover {
+            opacity: 1;
+        }
+        .carousel-button-prev {
+            left: 5px;
+        }
+        .carousel-button-next {
+            right: 5px;
+        }
+        /* --- END CAROUSEL FIXES --- */
         
-        /* Modal and Carousel styles (adjusting background to match light theme) */
+        /* Modal and general styles adjusted for light theme... */
         .modal {
             background-color: rgba(0, 0, 0, 0.6);
         }
@@ -110,7 +115,7 @@
             border: 1px solid #E2E8F0;
         }
         .modal-content h4 {
-            color: var(--color-text-dark); /* Ensure headings are dark */
+            color: var(--color-text-dark); 
         }
         
         .close-button {
@@ -120,11 +125,11 @@
         .close-button:focus {
             color: #000;
         }
-        /* ... (The rest of the CSS remains unchanged for specific functionality) ... */
-
     </style>
 </head>
-<body class="text-gray-800"> <header class="p-4 relative z-20">
+<body class="text-gray-800"> 
+
+    <header class="p-4 relative z-20">
         <div class="container mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-4">
                 <div class="hidden sm:block">
@@ -147,7 +152,6 @@
     <section id="hero" class="relative py-20 px-4 min-h-screen flex items-center justify-center overflow-hidden">
         <div class="glowing-light light-1"></div>
         <div class="glowing-light light-2"></div>
-
         <div class="container mx-auto z-10 relative text-center lg:flex lg:items-center lg:justify-center lg:text-left">
             <div class="lg:w-1/2 flex justify-center lg:justify-end">
                 <img src="ias foto profile.jpg" alt="Your Profile Photo" class="rounded-xl w-64 h-96 object-cover glowing-shadow">
@@ -187,7 +191,8 @@
         </div>
     </section>
 
-    <section id="services" class="py-20 px-4 bg-gray-50"> <div class="container mx-auto">
+    <section id="services" class="py-20 px-4 bg-gray-50"> 
+        <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center mb-12">How I Can Help Your Business Grow</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="service-card p-6 rounded-xl glowing-shadow bg-card hover-lift">
@@ -249,6 +254,7 @@
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <h3 class="text-lg font-bold mb-4 gradient-text">Visual Branding & Social Design</h3>
                     <p class="mt-2 text-sm text-gray-600 mb-4">Attractive visual designs that boost engagement and solve inconsistent brand imagery problems.</p>
+                    
                     <div class="relative carousel-container">
                         <div class="carousel-track">
                             <div class="carousel-item">
@@ -280,15 +286,39 @@
         <div class="container mx-auto max-w-2xl contact-card p-12 rounded-xl glowing-shadow">
             <h2 class="text-3xl font-bold gradient-text">Ready to Ignite Your Efficiency?</h2>
             <p class="mt-4 text-lg text-gray-600">The best partnerships start with a **friendly, zero-pressure conversation**. Let's talk about your vision and challenges.</p>
+            
             <div class="mt-8 space-y-4">
-                <a href="https://wa.me/6285861230297" target="_blank" class="mt-8 inline-block px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-transform transform hover:scale-105 shadow-lg text-lg">
+                <a href="https://wa.me/6285861230297" target="_blank" class="inline-block px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-transform transform hover:scale-105 shadow-lg text-lg">
                     👋 Click Here for a Free 15-Minute Chat
                 </a>
                 <p class="text-sm text-gray-500 italic">— No obligation, just a chance to know the person behind the skills! —</p>
-                <a href="mailto:iasgelarsampurna@gmail.com" class="mt-4 inline-block px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg">
-                    Or Contact via Email
-                </a>
-            </div>
+                
+                <h3 class="text-xl font-bold mt-8 mb-4 text-gray-800">Or Send Your Inquiry Directly</h3>
+                
+                <form action="https://formspree.io/f/YOUR_UNIQUE_FORM_ID" method="POST" class="bg-white p-6 rounded-xl shadow-md text-left space-y-4 border border-gray-200">
+                    <input type="hidden" name="_subject" value="New Portfolio Inquiry from IAS" />
+                    <input type="hidden" name="_replyto" value="Email" />
+                    
+                    <div class="space-y-1">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" id="name" name="Name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800">
+                    </div>
+                    <div class="space-y-1">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="email" name="Email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800">
+                    </div>
+                    <div class="space-y-1">
+                        <label for="message" class="block text-sm font-medium text-gray-700">Message / Project Brief</label>
+                        <textarea id="message" name="Message" rows="4" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800"></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-4 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition-colors shadow-lg">
+                        Send Email Inquiry
+                    </button>
+                    <p class="text-xs text-red-500 text-center mt-2">
+                       ⚠️ **PENTING:** Anda harus mengganti `'YOUR_UNIQUE_FORM_ID'` di `<form action="...">` dengan *endpoint* Formspree Anda. Daftarkan *email* `iasgelarsampurna@gmail.com` di Formspree untuk mendapatkan *endpoint* unik dan mengaktifkan pengiriman *email* otomatis.
+                    </p>
+                </form>
+                </div>
         </div>
     </section>
 
@@ -305,12 +335,12 @@
     </div>
 
     <script>
-        // Modal logic
+        // Modal logic (unchanged)
         const modal = document.getElementById('case-study-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalContentBody = document.getElementById('modal-content-body'); 
 
-        const caseStudies = {
+        const caseStudies = { /* ... (case studies data here) ... */
             'corrector': {
                 title: 'AI App: Automated Grading System',
                 content: `
@@ -404,28 +434,32 @@
             }
         };
 
-        // Media Social Carousel Logic 
-        const mediaCarousel = document.querySelector('.carousel-container');
-        const mediaTrack = mediaCarousel.querySelector('.carousel-track');
-        const mediaItems = mediaCarousel.querySelectorAll('.carousel-item');
-        const mediaPrevBtn = mediaCarousel.querySelector('.carousel-button-prev');
-        const mediaNextBtn = mediaCarousel.querySelector('.carousel-button-next');
-        let mediaIndex = 0;
+        // Media Social Carousel Logic (Corrected to be self-contained)
+        const mediaCarouselContainer = document.querySelector('.project-card-container > div:last-child');
+        if (mediaCarouselContainer) {
+            const mediaCarousel = mediaCarouselContainer.querySelector('.carousel-container');
+            const mediaTrack = mediaCarousel.querySelector('.carousel-track');
+            const mediaItems = mediaCarousel.querySelectorAll('.carousel-item');
+            const mediaPrevBtn = mediaCarousel.querySelector('.carousel-button-prev');
+            const mediaNextBtn = mediaCarousel.querySelector('.carousel-button-next');
+            let mediaIndex = 0;
 
-        const updateMediaCarousel = () => {
-            mediaTrack.style.transform = `translateX(-${mediaIndex * 100}%)`;
-        };
+            const updateMediaCarousel = () => {
+                mediaTrack.style.transform = `translateX(-${mediaIndex * 100}%)`;
+            };
 
-        mediaNextBtn.addEventListener('click', () => {
-            mediaIndex = (mediaIndex + 1) % mediaItems.length;
+            mediaNextBtn.addEventListener('click', () => {
+                mediaIndex = (mediaIndex + 1) % mediaItems.length;
+                updateMediaCarousel();
+            });
+
+            mediaPrevBtn.addEventListener('click', () => {
+                mediaIndex = (mediaIndex - 1 + mediaItems.length) % mediaItems.length;
+                updateMediaCarousel();
+            });
+            // Initial call to ensure the first item is shown correctly
             updateMediaCarousel();
-        });
-
-        mediaPrevBtn.addEventListener('click', () => {
-            mediaIndex = (mediaIndex - 1 + mediaItems.length) % mediaItems.length;
-            updateMediaCarousel();
-        });
-
+        }
     </script>
 </body>
 </html>
