@@ -359,8 +359,6 @@
     <section id="contact" class="py-20 px-4 text-center">
         <div class="container mx-auto max-w-2xl contact-card p-12 rounded-xl glowing-shadow">
             <h2 class="text-3xl font-bold gradient-text">Ready to Ignite Your Efficiency?</h2>
-            <p class="mt-4 text-lg text-gray-600">The best partnerships start with a **friendly, zero-pressure conversation**. Let's talk about your vision and challenges.</p>
-            
             <div class="mt-8 space-y-4">
                 <a href="https://wa.me/6285861230297" target="_blank" class="inline-block px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-transform transform hover:scale-105 shadow-lg text-lg">
                     👋 Click Here for a Free 15-Minute Chat
@@ -369,22 +367,32 @@
                 
                 <h3 class="text-xl font-bold mt-8 mb-4 text-gray-800">Or Send Your Inquiry Directly</h3>
                 
-                <form
-                action="https://formspree.io/f/xrbownjk"
-                method="POST"
-                >
-                <label>
-                    Your email:
-                    <input type="email" name="email">
-                </label>
-                <label>
-                    Your message:
-                    <textarea name="message"></textarea>
-                </label>
-                <!-- your other form fields go here -->
-                <button type="submit">Send</button>
+                <form id="contact-form" action="https://formspree.io/f/xrbownjk" class="bg-white p-6 rounded-xl shadow-md text-left space-y-4 border border-gray-200">
+                    
+                    <input type="hidden" name="_subject" value="✨ NEW PROJECT INQUIRY | Portofolio IAS" />
+                    <input type="hidden" name="Source" value="Portfolio Website Contact Form" />
+    
+                    <div class="space-y-1">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800">
+                    </div>
+                    <div class="space-y-1">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800">
+                    </div>
+                    <div class="space-y-1">
+                        <label for="message" class="block text-sm font-medium text-gray-700">Message / Project Brief</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800"></textarea>
+                    </div>
+    
+                    <button type="submit" id="submit-button" class="w-full px-4 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition-colors shadow-lg">
+                        Send Email Inquiry
+                    </button>
+                    
+                    <div id="form-status-message" class="text-center mt-3 font-semibold"></div>
                 </form>
-            </div>
+                </div>
+        </div>
     </section>
 
     <footer class="text-center py-10 px-8 text-gray-500">
@@ -524,7 +532,72 @@
             });
             updateMediaCarousel();
         }
+
+        // --- NEW: AJAX Form Submission Logic ---
+            const form = document.getElementById('contact-form');
+            const statusMessage = document.getElementById('form-status-message');
+            const submitButton = document.getElementById('submit-button');
+            
+            form.addEventListener('submit', function (e) {
+                e.preventDefault(); // Mencegah form submission standar (yang menyebabkan redirect)
+                
+                // Disable tombol dan tampilkan loading
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+                statusMessage.textContent = ''; 
+            
+                const data = new FormData(form);
+                const action = form.action;
+            
+                fetch(action, {
+                    method: 'POST', // Formspree tetap memerlukan method POST
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json' // Penting untuk Formspree AJAX
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        statusMessage.textContent = '🎉 Thank you! Your message has been sent successfully.';
+                        statusMessage.classList.add('text-green-600');
+                        form.reset(); // Kosongkan formulir setelah berhasil
+                    } else {
+                        return response.json().then(data => {
+                            if (data.errors) {
+                                // Menangani error validasi dari Formspree (seperti "Email should be an email")
+                                const emailError = data.errors.find(err => err.field === 'email' || err.field === 'message');
+                                if (emailError) {
+                                    statusMessage.textContent = `❌ Submission Failed: ${emailError.message}.`;
+                                } else {
+                                    statusMessage.textContent = '❌ An unexpected error occurred. Please try again later.';
+                                }
+                            } else {
+                                statusMessage.textContent = '❌ Submission failed. Please verify your fields.';
+                            }
+                            statusMessage.classList.add('text-red-500');
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('AJAX Error:', error);
+                    statusMessage.textContent = '❌ Network Error. Please check your connection.';
+                    statusMessage.classList.add('text-red-500');
+                })
+                .finally(() => {
+                    // Re-enable tombol
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Email Inquiry';
+                    statusMessage.classList.remove('text-red-500', 'text-green-600'); // Reset warna
+                    if (statusMessage.textContent.startsWith('🎉')) {
+                         statusMessage.classList.add('text-green-600');
+                    } else {
+                         statusMessage.classList.add('text-red-500');
+                    }
+                });
+            });
+            // --- END AJAX Form Submission Logic ---
     </script>
 </body>
 </html>
+
 
