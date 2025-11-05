@@ -369,27 +369,20 @@
                 
                 <h3 class="text-xl font-bold mt-8 mb-4 text-gray-800">Or Send Your Inquiry Directly</h3>
                 
-                <form action="https://formspree.io/f/xrbownjk" method="POST" class="bg-white p-6 rounded-xl shadow-md text-left space-y-4 border border-gray-200">
-                    <input type="hidden" name="_subject" value="✨ NEW PROJECT INQUIRY | Portofolio IAS" />
-                    <input type="hidden" name="_replyto" value="Email" />
-                    <input type="hidden" name="Source" value="Portfolio Website Contact Form" />
-                    <input type="hidden" name="_next" value="https://ia-portofolio.vercel.app/#contact" /> 
-
-                    <div class="space-y-1">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" id="name" name="Name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800">
-                    </div>
-                    <div class="space-y-1">
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                        <input type="email" id="email" name="Email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800">
-                    </div>
-                    <div class="space-y-1">
-                        <label for="message" class="block text-sm font-medium text-gray-700">Message / Project Brief</label>
-                        <textarea id="message" name="Message" rows="4" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800"></textarea>
-                    </div>
-                    <button type="submit" class="w-full px-4 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition-colors shadow-lg">
-                        Send Email Inquiry
-                    </button>
+                <form
+                action="https://formspree.io/f/xrbownjk"
+                method="POST"
+                >
+                <label>
+                    Your email:
+                    <input type="email" name="email">
+                </label>
+                <label>
+                    Your message:
+                    <textarea name="message"></textarea>
+                </label>
+                <!-- your other form fields go here -->
+                <button type="submit">Send</button>
                 </form>
             </div>
     </section>
@@ -534,3 +527,4 @@
     </script>
 </body>
 </html>
+
