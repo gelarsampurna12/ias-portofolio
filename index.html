@@ -533,71 +533,69 @@
             updateMediaCarousel();
         }
 
-        // --- NEW: AJAX Form Submission Logic ---
+        // --- NEW: AJAX Form Submission Logic dengan Loading State ---
             const form = document.getElementById('contact-form');
             const statusMessage = document.getElementById('form-status-message');
             const submitButton = document.getElementById('submit-button');
             
             form.addEventListener('submit', function (e) {
-                e.preventDefault(); // Mencegah form submission standar (yang menyebabkan redirect)
+                e.preventDefault(); // Mencegah form submission standar
                 
-                // Disable tombol dan tampilkan loading
+                // --- 1. LOADING STATE START ---
                 submitButton.disabled = true;
-                submitButton.textContent = 'Sending...';
-                statusMessage.textContent = ''; 
+                submitButton.textContent = 'Mengirim... Mohon Tunggu Sebentar'; 
+                submitButton.classList.remove('bg-green-500', 'hover:bg-green-600');
+                submitButton.classList.add('bg-gray-400', 'cursor-not-allowed'); // Tombol berubah warna abu-abu
+                statusMessage.textContent = ''; // Hapus pesan sebelumnya
+                // --- LOADING STATE END ---
             
                 const data = new FormData(form);
                 const action = form.action;
             
                 fetch(action, {
-                    method: 'POST', // Formspree tetap memerlukan method POST
+                    method: 'POST', 
                     body: data,
                     headers: {
-                        'Accept': 'application/json' // Penting untuk Formspree AJAX
+                        'Accept': 'application/json'
                     }
                 })
                 .then(response => {
                     if (response.ok) {
-                        statusMessage.textContent = '🎉 Thank you! Your message has been sent successfully.';
-                        statusMessage.classList.add('text-green-600');
+                        // Sukses - Menggunakan warna merah sesuai permintaan
+                        statusMessage.textContent = '🥳 Pesan berhasil terkirim! Saya akan segera membalas.';
+                        statusMessage.className = 'text-center mt-3 font-semibold text-red-600'; // WARNA MERAH UNTUK SUKSES
                         form.reset(); // Kosongkan formulir setelah berhasil
                     } else {
                         return response.json().then(data => {
+                            let errorMessage = '❌ Gagal mengirim. Silakan coba lagi.';
                             if (data.errors) {
-                                // Menangani error validasi dari Formspree (seperti "Email should be an email")
                                 const emailError = data.errors.find(err => err.field === 'email' || err.field === 'message');
                                 if (emailError) {
-                                    statusMessage.textContent = `❌ Submission Failed: ${emailError.message}.`;
-                                } else {
-                                    statusMessage.textContent = '❌ An unexpected error occurred. Please try again later.';
+                                    errorMessage = `❌ Validasi Gagal: ${emailError.message}.`;
                                 }
-                            } else {
-                                statusMessage.textContent = '❌ Submission failed. Please verify your fields.';
                             }
-                            statusMessage.classList.add('text-red-500');
+                            statusMessage.textContent = errorMessage;
+                            statusMessage.className = 'text-center mt-3 font-semibold text-red-600'; // WARNA MERAH UNTUK GAGAL
                         });
                     }
                 })
                 .catch(error => {
                     console.error('AJAX Error:', error);
-                    statusMessage.textContent = '❌ Network Error. Please check your connection.';
-                    statusMessage.classList.add('text-red-500');
+                    statusMessage.textContent = '❌ Kesalahan Jaringan. Silakan cek koneksi Anda.';
+                    statusMessage.className = 'text-center mt-3 font-semibold text-red-600'; // WARNA MERAH UNTUK ERROR
                 })
                 .finally(() => {
-                    // Re-enable tombol
+                    // Mengembalikan tombol ke kondisi awal
                     submitButton.disabled = false;
                     submitButton.textContent = 'Send Email Inquiry';
-                    statusMessage.classList.remove('text-red-500', 'text-green-600'); // Reset warna
-                    if (statusMessage.textContent.startsWith('🎉')) {
-                         statusMessage.classList.add('text-green-600');
-                    } else {
-                         statusMessage.classList.add('text-red-500');
-                    }
+                    submitButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                    submitButton.classList.add('bg-green-500', 'hover:bg-green-600'); 
                 });
             });
-            // --- END AJAX Form Submission Logic ---
+        // --- END AJAX Form Submission Logic ---
     </script>
 </body>
 </html>
+
 
 
