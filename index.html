@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* --- Light, Warm & Friendly Palette --- */
+        /* --- Clean & Fresh Palette (Soft Teal/Mint) --- */
         :root {
             --color-primary-light: #6EE7B7; /* Light Mint (Aksen Semangat) */
             --color-primary-dark: #4FD1C5;  /* Soft Teal (Aksen Ceria) */
@@ -22,18 +22,19 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--color-background-warm); 
-            color: var(--color-text-dark);
+            background-color: #0d1117; 
+            color: #c9d1d9;
         }
 
         .glowing-shadow {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 15px rgba(110, 231, 183, 0.4); 
+            /* Menggunakan warna aksen teal/mint */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 15px rgba(110, 231, 183, 0.2); 
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
         .glowing-shadow:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1), 0 0 25px rgba(79, 209, 197, 0.6); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.1), 0 0 25px rgba(79, 209, 197, 0.4); 
         }
 
         .gradient-text {
@@ -43,49 +44,81 @@
         }
 
         .bg-card {
-            background-color: #FFFFFF; /* Pure White for Card */
-            color: var(--color-text-dark);
+            background-color: #161b22; /* Darker background for card */
         }
         
         .contact-card {
-            background: #FEFAF7; /* Very light subtle background for Contact */
-            border: 1px solid #E2E8F0; /* Light border */
+            background: linear-gradient(135deg, #161b22, #0d1117);
+            border: 1px solid #30363d;
         }
 
         .hover-lift:hover {
             transform: translateY(-8px);
             transition: transform 0.3s ease-in-out;
         }
+        .header-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px var(--color-primary-dark);
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        
+        .project-card-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            overflow-x: auto; 
+            padding-bottom: 1rem;
+        }
 
-        /* --- CAROUSEL FIXES --- */
+        @media (min-width: 640px) {
+            .project-card-container {
+                grid-template-columns: repeat(2, 1fr);
+                overflow-x: hidden;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .project-card-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .project-card-container > div {
+            min-width: 280px; 
+        }
+        
+        /* Glowing light effect for Hero section - Soft Teal light */
+        .glowing-light {
+            position: absolute;
+            background: radial-gradient(circle, rgba(79, 209, 197, 0.5) 0%, transparent 70%); 
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: pulse-light 10s infinite ease-in-out alternate;
+        }
+        
+        /* Carousel specific styles */
         .carousel-container {
-            overflow: hidden; 
+            overflow: hidden;
             position: relative;
-            height: 250px; /* NEW: Explicit height to hide overflow */
         }
         .carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
-            height: 100%; /* Ensure track takes full container height */
         }
         .carousel-item {
             min-width: 100%;
             box-sizing: border-box;
             flex-shrink: 0;
-            display: flex; /* To center/align the image if needed */
-            justify-content: center;
-            align-items: center;
         }
         .carousel-item img {
-            max-height: 250px; /* Constrain image height */
-            width: 100%; /* Ensure images fill item width */
-            object-fit: contain; /* Use 'contain' to ensure the full image is visible */
+            max-height: 200px; 
         }
         .carousel-button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
             cursor: pointer;
@@ -102,47 +135,78 @@
         .carousel-button-next {
             right: 5px;
         }
-        /* --- END CAROUSEL FIXES --- */
-        
-        /* Modal and general styles adjusted for light theme... */
+
+        /* Modal Styles */
         .modal {
-            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
         }
 
         .modal-content {
-            background-color: #FFFFFF;
-            color: var(--color-text-dark); 
-            border: 1px solid #E2E8F0;
-        }
-        .modal-content h4 {
-            color: var(--color-text-dark); 
+            background-color: #161b22;
+            margin: auto;
+            padding: 2rem;
+            border: 1px solid #30363d;
+            width: 90%;
+            max-width: 700px;
+            border-radius: 1rem;
+            position: relative;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+            max-height: 80vh;
+            overflow-y: auto;
         }
         
         .close-button {
-            color: #555;
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
         }
+
         .close-button:hover,
         .close-button:focus {
-            color: #000;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes animatetop {
+            from {top:-300px; opacity:0} 
+            to {top:0; opacity:1}
         }
     </style>
 </head>
-<body class="text-gray-800"> 
+<body class="bg-gray-950 text-gray-200">
 
     <header class="p-4 relative z-20">
         <div class="container mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-4">
                 <div class="hidden sm:block">
                     <p class="font-bold text-lg gradient-text">I A S</p>
-                    <p class="text-sm text-gray-500">Available for new projects</p>
+                    <p class="text-sm text-gray-400">Available for new projects</p>
                 </div>
             </div>
             <div class="flex items-center space-x-6">
                 <nav class="hidden md:flex items-center space-x-6">
-                    <a href="#" class="text-gray-600 hover:text-gray-900 transition-colors header-link">Home</a>
-                    <a href="#about" class="text-gray-600 hover:text-gray-900 transition-colors header-link">About</a>
-                    <a href="#services" class="text-gray-600 hover:text-gray-900 transition-colors header-link">Solutions</a>
-                    <a href="#projects" class="text-gray-600 hover:text-gray-900 transition-colors header-link">Projects</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors header-link">Home</a>
+                    <a href="#about" class="text-gray-400 hover:text-white transition-colors header-link">About</a>
+                    <a href="#services" class="text-gray-400 hover:text-white transition-colors header-link">Solutions</a>
+                    <a href="#projects" class="text-gray-400 hover:text-white transition-colors header-link">Projects</a>
                     <a href="#contact" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg">Free Consultation</a>
                 </nav>
             </div>
@@ -152,18 +216,19 @@
     <section id="hero" class="relative py-20 px-4 min-h-screen flex items-center justify-center overflow-hidden">
         <div class="glowing-light light-1"></div>
         <div class="glowing-light light-2"></div>
+
         <div class="container mx-auto z-10 relative text-center lg:flex lg:items-center lg:justify-center lg:text-left">
             <div class="lg:w-1/2 flex justify-center lg:justify-end">
                 <img src="ias foto profile.jpg" alt="Your Profile Photo" class="rounded-xl w-64 h-96 object-cover glowing-shadow">
             </div>
             <div class="lg:w-1/2 mt-10 lg:mt-0 lg:pl-16">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
                     Hello! I’m <span class="gradient-text">Ia Asep Sunarya</span>
                 </h1>
-                <p class="mt-4 text-xl md:text-2xl text-gray-600">
+                <p class="mt-4 text-xl md:text-2xl text-gray-400">
                     **Your Virtual Partner in Digital Solutions**
                 </p>
-                <p class="mt-6 max-w-lg text-lg text-gray-700 mx-auto lg:mx-0">
+                <p class="mt-6 max-w-lg text-lg text-gray-300 mx-auto lg:mx-0">
                     🚀 Ready to take off? I focus on **Rapid Efficiency & Smart Digital Solutions** designed to **free your time from administrative burdens.** Let's transform routine tasks into a smooth, stress-free business operation.
                 </p>
                 <div class="mt-8">
@@ -180,32 +245,32 @@
             <h2 class="text-3xl font-bold mb-12 gradient-text">My Core Philosophy: Solution & Efficiency</h2>
             <div class="grid md:grid-cols-2 gap-10 text-left">
                 <div class="bg-card p-6 rounded-xl shadow-lg glowing-shadow">
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Problem-Solver First</h3>
-                    <p class="text-gray-600">I don't just execute tasks; I diagnose the root cause of your time drains or digital bottlenecks. My goal is to find the **most efficient path** to achieve your business objectives.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Problem-Solver First</h3>
+                    <p class="text-gray-400">I don't just execute tasks; I diagnose the root cause of your time drains or digital bottlenecks. My goal is to find the **most efficient path** to achieve your business objectives.</p>
                 </div>
                 <div class="bg-card p-6 rounded-xl shadow-lg glowing-shadow">
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">Tech Stack Expertise</h3>
-                    <p class="text-gray-600">Specializing in full-stack development (MERN, PHP), Digital Marketing (Meta Ads, SEO), and AI integration. I ensure the technical solution is always aligned with your **real-world business needs.**</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Tech Stack Expertise</h3>
+                    <p class="text-gray-400">Specializing in full-stack development (MERN, PHP), Digital Marketing (Meta Ads, SEO), and AI integration. I ensure the technical solution is always aligned with your **real-world business needs.**</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-20 px-4 bg-gray-50"> 
+    <section id="services" class="py-20 px-4 bg-gray-900">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center mb-12">How I Can Help Your Business Grow</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="service-card p-6 rounded-xl glowing-shadow bg-card hover-lift">
                     <h3 class="text-xl font-bold gradient-text mb-2">Web Development & Automation</h3>
-                    <p class="text-gray-600">Building custom, high-speed websites, automation tools (like the RPP app), and scalable web applications to streamline operations.</p>
+                    <p class="text-gray-400">Building custom, high-speed websites, automation tools (like the RPP app), and scalable web applications to streamline operations.</p>
                 </div>
                 <div class="service-card p-6 rounded-xl glowing-shadow bg-card hover-lift">
                     <h3 class="text-xl font-bold gradient-text mb-2">Digital Strategy & Ads Management</h3>
-                    <p class="text-gray-600">Running targeted Meta/Google Ads campaigns and implementing SEO strategies to maximize ROI and ensure sustainable audience growth.</p>
+                    <p class="text-gray-400">Running targeted Meta/Google Ads campaigns and implementing SEO strategies to maximize ROI and ensure sustainable audience growth.</p>
                 </div>
                 <div class="service-card p-6 rounded-xl glowing-shadow bg-card hover-lift">
                     <h3 class="text-xl font-bold gradient-text mb-2">Virtual Assistance & Efficiency</h3>
-                    <p class="text-gray-600">From data management to content creation using AI, I handle the operational load so you can focus on core decision-making.</p>
+                    <p class="text-gray-400">From data management to content creation using AI, I handle the operational load so you can focus on core decision-making.</p>
                 </div>
             </div>
         </div>
@@ -215,46 +280,44 @@
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center mb-12">Featured Solutions (Case Studies)</h2>
             <div class="project-card-container">
-                
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <img src="corrector.png" alt="Corrector AI App" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold gradient-text">AI App: Automated Grading System</h3>
-                    <p class="mt-2 text-sm text-gray-600">An automated essay grading application using AI, saving educators valuable time.</p>
+                    <p class="mt-2 text-sm text-gray-400">An automated essay grading application using AI, saving educators valuable time.</p>
                     <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('corrector')">View Solution & Results</button>
                 </div>
                 
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/emmifree.png" alt="Emifree Website" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold gradient-text">E-Commerce Frontend Optimization</h3>
-                    <p class="mt-2 text-sm text-gray-600">Frontend development for an e-commerce platform focused on improving user flow and conversions.</p>
+                    <p class="mt-2 text-sm text-gray-400">Frontend development for an e-commerce platform focused on improving user flow and conversions.</p>
                     <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('emifree')">View Solution & Results</button>
                 </div>
                 
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/rpp nifhasy.png" alt="RPP Nifhasy App" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold gradient-text">Teacher Efficiency App (RPP Automation)</h3>
-                    <p class="mt-2 text-sm text-gray-600">An application to help teachers create detailed lesson plans (RPP) efficiently.</p>
+                    <p class="mt-2 text-sm text-gray-400">An application to help teachers create detailed lesson plans (RPP) efficiently.</p>
                     <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('rpp-nifhasy')">View Solution & Results</button>
                 </div>
                 
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/thumbnail-aswaja.png" alt="AI Video Engineering Thumbnail" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold gradient-text">Creative AI Video Production</h3>
-                    <p class="mt-2 text-sm text-gray-600">Leveraging AI Prompt Engineering to create high-quality video content under tight deadlines.</p>
+                    <p class="mt-2 text-sm text-gray-400">Leveraging AI Prompt Engineering to create high-quality video content under tight deadlines.</p>
                     <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('ai-video')">View Solution & Results</button>
                 </div>
                 
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/report-meta-ads.jpg" alt="Meta Ads Report" class="rounded-lg mb-4 w-full h-auto object-cover">
                     <h3 class="text-lg font-bold gradient-text">Targeted Digital Marketing Campaigns</h3>
-                    <p class="mt-2 text-sm text-gray-600">Managing Meta ad campaigns to increase product reach, conversions, and enrollment (case study).</p>
+                    <p class="mt-2 text-sm text-gray-400">Managing Meta ad campaigns to increase product reach, conversions, and enrollment (case study).</p>
                     <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('meta-ads')">View Solution & Results</button>
                 </div>
                 
                 <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <h3 class="text-lg font-bold mb-4 gradient-text">Visual Branding & Social Design</h3>
-                    <p class="mt-2 text-sm text-gray-600 mb-4">Attractive visual designs that boost engagement and solve inconsistent brand imagery problems.</p>
-                    
+                    <p class="mt-2 text-sm text-gray-400 mb-4">Attractive visual designs that boost engagement and solve inconsistent brand imagery problems.</p>
                     <div class="relative carousel-container">
                         <div class="carousel-track">
                             <div class="carousel-item">
@@ -285,40 +348,16 @@
     <section id="contact" class="py-20 px-4 text-center">
         <div class="container mx-auto max-w-2xl contact-card p-12 rounded-xl glowing-shadow">
             <h2 class="text-3xl font-bold gradient-text">Ready to Ignite Your Efficiency?</h2>
-            <p class="mt-4 text-lg text-gray-600">The best partnerships start with a **friendly, zero-pressure conversation**. Let's talk about your vision and challenges.</p>
-            
+            <p class="mt-4 text-lg text-gray-400">The best partnerships start with a **friendly, zero-pressure conversation**. Let's talk about your vision and challenges.</p>
             <div class="mt-8 space-y-4">
-                <a href="https://wa.me/6285861230297" target="_blank" class="inline-block px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-transform transform hover:scale-105 shadow-lg text-lg">
+                <a href="https://wa.me/6285861230297" target="_blank" class="mt-8 inline-block px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-transform transform hover:scale-105 shadow-lg text-lg">
                     👋 Click Here for a Free 15-Minute Chat
                 </a>
                 <p class="text-sm text-gray-500 italic">— No obligation, just a chance to know the person behind the skills! —</p>
-                
-                <h3 class="text-xl font-bold mt-8 mb-4 text-gray-800">Or Send Your Inquiry Directly</h3>
-                
-                <form action="https://formspree.io/f/YOUR_UNIQUE_FORM_ID" method="POST" class="bg-white p-6 rounded-xl shadow-md text-left space-y-4 border border-gray-200">
-                    <input type="hidden" name="_subject" value="New Portfolio Inquiry from IAS" />
-                    <input type="hidden" name="_replyto" value="Email" />
-                    
-                    <div class="space-y-1">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" id="name" name="Name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800">
-                    </div>
-                    <div class="space-y-1">
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                        <input type="email" id="email" name="Email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800">
-                    </div>
-                    <div class="space-y-1">
-                        <label for="message" class="block text-sm font-medium text-gray-700">Message / Project Brief</label>
-                        <textarea id="message" name="Message" rows="4" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-gray-800"></textarea>
-                    </div>
-                    <button type="submit" class="w-full px-4 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition-colors shadow-lg">
-                        Send Email Inquiry
-                    </button>
-                    <p class="text-xs text-red-500 text-center mt-2">
-                       ⚠️ **PENTING:** Anda harus mengganti `'YOUR_UNIQUE_FORM_ID'` di `<form action="...">` dengan *endpoint* Formspree Anda. Daftarkan *email* `iasgelarsampurna@gmail.com` di Formspree untuk mendapatkan *endpoint* unik dan mengaktifkan pengiriman *email* otomatis.
-                    </p>
-                </form>
-                </div>
+                <a href="mailto:iasgelarsampurna@gmail.com" class="mt-4 inline-block px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg">
+                    Or Contact via Email
+                </a>
+            </div>
         </div>
     </section>
 
@@ -335,82 +374,82 @@
     </div>
 
     <script>
-        // Modal logic (unchanged)
+        // Modal logic
         const modal = document.getElementById('case-study-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalContentBody = document.getElementById('modal-content-body'); 
 
-        const caseStudies = { /* ... (case studies data here) ... */
+        const caseStudies = {
             'corrector': {
                 title: 'AI App: Automated Grading System',
                 content: `
-                    <p class="text-sm font-bold text-yellow-600 mb-4">⏱️ ESTIMATED DURATION: 8 Weeks (Development & Deployment)</p>
-                    <h4 class="font-semibold text-gray-900 mb-1">🔥 Problem Solved:</h4>
-                    <p class="text-gray-700">Teachers needed a faster way to grade essays without compromising quality. Manual grading was time-consuming and often inconsistent (consuming 30% of their teaching time).</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">⚙️ Solution Provided:</h4>
-                    <p class="text-gray-700">I designed and built an **AI-powered grading system** that automates the assessment process, providing immediate, objective feedback on grammar, structure, and content.</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">✅ Measured Result:</h4>
-                    <p class="text-gray-700">This solution significantly reduced grading time by **70%** and provided consistent, objective feedback, allowing teachers to focus more on personalized instruction.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 8 Weeks (Development & Deployment)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>Teachers needed a faster way to grade essays without compromising quality. Manual grading was time-consuming and often inconsistent (consuming 30% of their teaching time).</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I designed and built an **AI-powered grading system** that automates the assessment process, providing immediate, objective feedback on grammar, structure, and content.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>This solution significantly reduced grading time by **70%** and provided consistent, objective feedback, allowing teachers to focus more on personalized instruction.</p>
                 `
             },
             'emifree': {
                 title: 'E-Commerce Frontend Optimization',
                 content: `
-                    <p class="text-sm font-bold text-yellow-600 mb-4">⏱️ ESTIMATED DURATION: 4 Weeks (Design Implementation & Optimization)</p>
-                    <h4 class="font-semibold text-gray-900 mb-1">🔥 Problem Solved:</h4>
-                    <p class="text-gray-700">The client's previous e-commerce site was outdated and had a high bounce rate (over 60%). The interface was not user-friendly, directly hindering sales conversions.</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">⚙️ Solution Provided:</h4>
-                    <p class="text-gray-700">I rebuilt the frontend using modern web technologies to create a clean, **responsive, and intuitive user interface.** I optimized the site for fast loading times and a seamless shopping experience.</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">✅ Measured Result:</h4>
-                    <p class="text-gray-700">The new design led to a **25% increase in user engagement** and a more professional brand image, directly contributing to higher sales conversions and reducing bounce rate to below 40%.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 4 Weeks (Design Implementation & Optimization)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>The client's previous e-commerce site was outdated and had a high bounce rate (over 60%). The interface was not user-friendly, directly hindering sales conversions.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I rebuilt the frontend using modern web technologies to create a clean, **responsive, and intuitive user interface.** I optimized the site for fast loading times and a seamless shopping experience.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>The new design led to a **25% increase in user engagement** and a more professional brand image, directly contributing to higher sales conversions and reducing bounce rate to below 40%.</p>
                 `
             },
             'rpp-nifhasy': {
                 title: 'Teacher Efficiency App (RPP Automation)',
                 content: `
-                    <p class="text-sm font-bold text-yellow-600 mb-4">⏱️ ESTIMATED DURATION: 6 Weeks (Full Development Cycle)</p>
-                    <h4 class="font-semibold text-gray-900 mb-1">🔥 Problem Solved:</h4>
-                    <p class="text-gray-700">Teachers were spending too much time creating detailed lesson plans (RPP) manually, taking time away from teaching and student interaction (averaging 4 hours/week per teacher).</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">⚙️ Solution Provided:</h4>
-                    <p class="text-gray-700">I developed a web application that **automates the RPP creation process.** The app allows teachers to quickly input key information and automatically generates a comprehensive lesson plan based on educational standards.</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">✅ Measured Result:</h4>
-                    <p class="text-gray-700">The application reduced the time required for lesson plan creation by **up to 80%**, empowering teachers to be more efficient and focused on their core responsibilities in the classroom.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 6 Weeks (Full Development Cycle)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>Teachers were spending too much time creating detailed lesson plans (RPP) manually, taking time away from teaching and student interaction (averaging 4 hours/week per teacher).</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I developed a web application that **automates the RPP creation process.** The app allows teachers to quickly input key information and automatically generates a comprehensive lesson plan based on educational standards.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>The application reduced the time required for lesson plan creation by **up to 80%**, empowering teachers to be more efficient and focused on their core responsibilities in the classroom.</p>
                 `
             },
             'ai-video': {
                 title: 'Creative AI Video Production',
                 content: `
-                    <p class="text-sm font-bold text-yellow-600 mb-4">⏱️ ESTIMATED DURATION: 2 Weeks (Concept, Prompting & Final Rendering)</p>
-                    <h4 class="font-semibold text-gray-900 mb-1">🔥 Problem Solved:</h4>
-                    <p class="text-gray-700">A client needed a visually stunning video for a competition with a **tight deadline** and limited resources for traditional video production.</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">⚙️ Solution Provided:</h4>
-                    <p class="text-gray-700">I leveraged **AI Prompt Engineering** to generate high-quality, creative visuals and animations based on detailed text prompts. This allowed for rapid, high-impact content creation.</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">✅ Measured Result:</h4>
-                    <p class="text-gray-700">The project successfully delivered a professional-quality video that stood out, helping the client secure **first place** in the competition and proving the efficiency of AI in creative media.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 2 Weeks (Concept, Prompting & Final Rendering)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>A client needed a visually stunning video for a competition with a **tight deadline** and limited resources for traditional video production.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I leveraged **AI Prompt Engineering** to generate high-quality, creative visuals and animations based on detailed text prompts. This allowed for rapid, high-impact content creation.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>The project successfully delivered a professional-quality video that stood out, helping the client secure **first place** in the competition and proving the efficiency of AI in creative media.</p>
                 `
             },
             'meta-ads': {
                 title: 'Targeted Digital Marketing Campaigns (Enrollment Case)',
                 content: `
-                    <p class="text-sm font-bold text-yellow-600 mb-4">⏱️ ESTIMATED DURATION: 12 Weeks (Setup, Testing & 2 Month Campaign Run)</p>
-                    <h4 class="font-semibold text-gray-900 mb-1">🔥 Problem Solved:</h4>
-                    <p class="text-gray-700">A school was struggling to reach its target enrollment audience effectively through traditional advertising, leading to low inquiry rates and wasted ad spend.</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">⚙️ Solution Provided:</h4>
-                    <p class="text-gray-700">I designed and managed a targeted Meta Ads campaign with a focus on **optimizing ad spend, A/B testing creative assets, and refining audience demographics** to maximize conversions.</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">✅ Measured Result:</h4>
-                    <p class="text-gray-700">The campaign generated **190 link clicks and 571 engagements** with a highly efficient cost per result. This led to a **significant increase in student inquiries and enrollments** far exceeding the school's expectations.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 12 Weeks (Setup, Testing & 2 Month Campaign Run)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>A school was struggling to reach its target enrollment audience effectively through traditional advertising, leading to low inquiry rates and wasted ad spend.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I designed and managed a targeted Meta Ads campaign with a focus on **optimizing ad spend, A/B testing creative assets, and refining audience demographics** to maximize conversions.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>The campaign generated **190 link clicks and 571 engagements** with a highly efficient cost per result. This led to a **significant increase in student inquiries and enrollments** far exceeding the school's expectations.</p>
                 `
             },
             'social-media': {
                 title: 'Visual Branding & Social Design',
                 content: `
-                    <p class="text-sm font-bold text-yellow-600 mb-4">⏱️ ESTIMATED DURATION: 3 Weeks (Strategy, Template Design & Handover)</p>
-                    <h4 class="font-semibold text-gray-900 mb-1">🔥 Problem Solved:</h4>
-                    <p class="text-gray-700">A retail brand needed to improve its social media presence. Their content lacked **consistency and a professional look**, leading to low engagement and brand confusion.</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">⚙️ Solution Provided:</h4>
-                    <p class="text-gray-700">I created a cohesive social media strategy and designed a series of professional, **on-brand templates** for Instagram and Facebook. The designs were crafted to be visually appealing and easy for their team to reuse.</p>
-                    <h4 class="font-semibold text-gray-900 mt-4 mb-1">✅ Measured Result:</h4>
-                    <p class="text-gray-700">The new designs led to a **45% increase in engagement** and established a stronger, more professional brand image, helping the client attract a larger, more relevant audience.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 3 Weeks (Strategy, Template Design & Handover)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>A retail brand needed to improve its social media presence. Their content lacked **consistency and a professional look**, leading to low engagement and brand confusion.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I created a cohesive social media strategy and designed a series of professional, **on-brand templates** for Instagram and Facebook. The designs were crafted to be visually appealing and easy for their team to reuse.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>The new designs led to a **45% increase in engagement** and established a stronger, more professional brand image, helping the client attract a larger, more relevant audience.</p>
                 `
             }
         };
@@ -434,32 +473,56 @@
             }
         };
 
-        // Media Social Carousel Logic (Corrected to be self-contained)
-        const mediaCarouselContainer = document.querySelector('.project-card-container > div:last-child');
-        if (mediaCarouselContainer) {
-            const mediaCarousel = mediaCarouselContainer.querySelector('.carousel-container');
-            const mediaTrack = mediaCarousel.querySelector('.carousel-track');
-            const mediaItems = mediaCarousel.querySelectorAll('.carousel-item');
-            const mediaPrevBtn = mediaCarousel.querySelector('.carousel-button-prev');
-            const mediaNextBtn = mediaCarousel.querySelector('.carousel-button-next');
-            let mediaIndex = 0;
+        // Media Social Carousel Logic 
+        const mediaCarousel = document.querySelector('.carousel-container');
+        const mediaTrack = mediaCarousel.querySelector('.carousel-track');
+        const mediaItems = mediaCarousel.querySelectorAll('.carousel-item');
+        const mediaPrevBtn = mediaCarousel.querySelector('.carousel-button-prev');
+        const mediaNextBtn = mediaCarousel.querySelector('.carousel-button-next');
+        let mediaIndex = 0;
 
-            const updateMediaCarousel = () => {
-                mediaTrack.style.transform = `translateX(-${mediaIndex * 100}%)`;
-            };
+        const updateMediaCarousel = () => {
+            mediaTrack.style.transform = `translateX(-${mediaIndex * 100}%)`;
+        };
 
-            mediaNextBtn.addEventListener('click', () => {
-                mediaIndex = (mediaIndex + 1) % mediaItems.length;
-                updateMediaCarousel();
-            });
-
-            mediaPrevBtn.addEventListener('click', () => {
-                mediaIndex = (mediaIndex - 1 + mediaItems.length) % mediaItems.length;
-                updateMediaCarousel();
-            });
-            // Initial call to ensure the first item is shown correctly
+        mediaNextBtn.addEventListener('click', () => {
+            mediaIndex = (mediaIndex + 1) % mediaItems.length;
             updateMediaCarousel();
-        }
+        });
+
+        mediaPrevBtn.addEventListener('click', () => {
+            mediaIndex = (mediaIndex - 1 + mediaItems.length) % mediaItems.length;
+            updateMediaCarousel();
+        });
+
+        // Project Card Auto-Scroll Logic (Disabled as per previous discussion, but included if needed)
+        // const projectCardContainer = document.querySelector('.project-card-container');
+        // let autoScrollInterval;
+        // const scrollAmount = 300; 
+        
+        // function startAutoScroll() { 
+        //     autoScrollInterval = setInterval(() => {
+        //         const currentScroll = projectCardContainer.scrollLeft;
+        //         const maxScroll = projectCardContainer.scrollWidth - projectCardContainer.clientWidth;
+        
+        //         if (currentScroll >= maxScroll) {
+        //             projectCardContainer.scrollTo({ left: 0, behavior: 'smooth' });
+        //         } else {
+        //             projectCardContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        //         }
+        //     }, 3000); 
+        // };
+        
+        // function stopAutoScroll() {
+        //     clearInterval(autoScrollInterval);
+        // };
+        
+        // projectCardContainer.addEventListener('mouseenter', stopAutoScroll);
+        // projectCardContainer.addEventListener('mouseleave', startAutoScroll);
+        
+        // if (projectCardContainer.scrollWidth > projectCardContainer.clientWidth) {
+        //     startAutoScroll();
+        // }
     </script>
 </body>
 </html>
