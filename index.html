@@ -607,68 +607,69 @@
             updateMediaCarousel();
         }
 
-
-        // AJAX Form Submission Logic
-        const form = document.getElementById('contact-form');
-        const statusMessage = document.getElementById('form-status-message');
-        const submitButton = document.getElementById('submit-button');
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault(); 
+       // --- NEW: AJAX Form Submission Logic dengan Loading State ---
+            const form = document.getElementById('contact-form');
+            const statusMessage = document.getElementById('form-status-message');
+            const submitButton = document.getElementById('submit-button');
             
-            // 1. LOADING STATE START
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending... Please Wait'; 
-            submitButton.classList.remove('bg-green-500', 'hover:bg-green-600');
-            submitButton.classList.add('bg-gray-400', 'cursor-not-allowed');
-            statusMessage.textContent = ''; 
-
-            const data = new FormData(form);
-            const action = form.action;
-
-            fetch(action, {
-                method: 'POST', 
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Success - Using red color for success as requested
-                    statusMessage.textContent = '🥳 Success! Your message has been sent. I will reply shortly.';
-                    statusMessage.className = 'text-center mt-3 font-semibold text-red-600'; // RED COLOR FOR SUCCESS
-                    form.reset(); 
-                } else {
-                    return response.json().then(data => {
-                        let errorMessage = '❌ Failed to send. Please try again.';
-                        if (data.errors) {
-                            const emailError = data.errors.find(err => err.field === 'email' || err.field === 'message');
-                            if (emailError) {
-                                errorMessage = `❌ Validation Failed: ${emailError.message}.`;
+            form.addEventListener('submit', function (e) {
+                e.preventDefault(); // Mencegah form submission standar
+                
+                // --- 1. LOADING STATE START ---
+                submitButton.disabled = true;
+                submitButton.textContent = 'Mengirim... Mohon Tunggu Sebentar'; 
+                submitButton.classList.remove('bg-green-500', 'hover:bg-green-600');
+                submitButton.classList.add('bg-gray-400', 'cursor-not-allowed'); // Tombol berubah warna abu-abu
+                statusMessage.textContent = ''; // Hapus pesan sebelumnya
+                // --- LOADING STATE END ---
+            
+                const data = new FormData(form);
+                const action = form.action;
+            
+                fetch(action, {
+                    method: 'POST', 
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Sukses - Menggunakan warna merah sesuai permintaan
+                        statusMessage.textContent = '🥳 Pesan berhasil terkirim! Saya akan segera membalas.';
+                        statusMessage.className = 'text-center mt-3 font-semibold text-red-600'; // WARNA MERAH UNTUK SUKSES
+                        form.reset(); // Kosongkan formulir setelah berhasil
+                    } else {
+                        return response.json().then(data => {
+                            let errorMessage = '❌ Gagal mengirim. Silakan coba lagi.';
+                            if (data.errors) {
+                                const emailError = data.errors.find(err => err.field === 'email' || err.field === 'message');
+                                if (emailError) {
+                                    errorMessage = `❌ Validasi Gagal: ${emailError.message}.`;
+                                }
                             }
-                        }
-                        statusMessage.textContent = errorMessage;
-                        statusMessage.className = 'text-center mt-3 font-semibold text-red-600'; // RED COLOR FOR FAILURE
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('AJAX Error:', error);
-                statusMessage.textContent = '❌ Network Error. Please check your connection.';
-                statusMessage.className = 'text-center mt-3 font-semibold text-red-600'; 
-            })
-            .finally(() => {
-                // Revert button to original state
-                submitButton.disabled = false;
-                submitButton.textContent = 'Send Email Inquiry';
-                submitButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
-                submitButton.classList.add('bg-green-500', 'hover:bg-green-600'); 
+                            statusMessage.textContent = errorMessage;
+                            statusMessage.className = 'text-center mt-3 font-semibold text-red-600'; // WARNA MERAH UNTUK GAGAL
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('AJAX Error:', error);
+                    statusMessage.textContent = '❌ Kesalahan Jaringan. Silakan cek koneksi Anda.';
+                    statusMessage.className = 'text-center mt-3 font-semibold text-red-600'; // WARNA MERAH UNTUK ERROR
+                })
+                .finally(() => {
+                    // Mengembalikan tombol ke kondisi awal
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Email Inquiry';
+                    submitButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                    submitButton.classList.add('bg-green-500', 'hover:bg-green-600'); 
+                });
             });
-        });
-        // END AJAX Form Submission Logic
+        // --- END AJAX Form Submission Logic ---
     </script>
 </body>
 </html>
+
 
 
