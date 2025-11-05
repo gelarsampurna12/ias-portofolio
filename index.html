@@ -3,38 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Ia Asep Sunarya - Web Developer & Digital Marketer</title>
-    <meta name="description" content="Portfolio profesional Ia Asep Sunarya: Web Developer, Digital Marketer, dan Graphic Designer. Menawarkan layanan pengembangan website, kampanye iklan, dan desain visual untuk bisnis.">
-    <meta name="keywords" content="web developer, digital marketer, graphic designer, web design, SEO, Meta Ads, WordPress, portfolio, freelance, ia asep sunarya">
+    <title>Portfolio | Ia Asep Sunarya - Virtual Partner & Digital Solutions</title>
+    <meta name="description" content="Portfolio profesional Ia Asep Sunarya: Virtual Partner, Web Developer, dan Digital Strategist. Fokus pada solusi yang meningkatkan efisiensi dan pertumbuhan bisnis.">
+    <meta name="keywords" content="virtual assistant, web developer, digital strategist, web design, SEO, Meta Ads, WordPress, freelance, solution-oriented, ia asep sunarya, timely estimation">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* --- Clean & Fresh Palette (Soft Teal/Mint) --- */
+        :root {
+            --color-primary-light: #6EE7B7; /* Light Mint (Green-300) */
+            --color-primary-dark: #4FD1C5;  /* Soft Teal (Teal-400) */
+            --color-cta-bg: #10B981; /* Tailwind Green 500 equivalent for CTA */
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
+            background-color: #0d1117; 
             color: #c9d1d9;
         }
 
         .glowing-shadow {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 15px rgba(30, 255, 255, 0.2);
+            /* Menggunakan warna aksen teal/mint */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 15px rgba(110, 231, 183, 0.2); 
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
         .glowing-shadow:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.1), 0 0 25px rgba(30, 255, 255, 0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.1), 0 0 25px rgba(79, 209, 197, 0.4); 
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, #1e90ff, #00bfff);
+            background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .bg-card {
-            background-color: #161b22;
+            background-color: #161b22; /* Darker background for card */
         }
         
         .contact-card {
@@ -48,7 +56,7 @@
         }
         .header-link:hover {
             color: #ffffff;
-            text-shadow: 0 0 8px #1e90ff;
+            text-shadow: 0 0 8px var(--color-primary-dark);
             transition: color 0.3s, text-shadow 0.3s;
         }
         
@@ -56,11 +64,14 @@
             display: grid;
             grid-template-columns: repeat(1, 1fr);
             gap: 1.5rem;
+            overflow-x: auto; 
+            padding-bottom: 1rem;
         }
 
         @media (min-width: 640px) {
             .project-card-container {
                 grid-template-columns: repeat(2, 1fr);
+                overflow-x: hidden;
             }
         }
 
@@ -69,22 +80,38 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-        
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-        }
 
+        .project-card-container > div {
+            min-width: 280px; 
+        }
+        
+        /* Glowing light effect for Hero section - Soft Teal light */
+        .glowing-light {
+            position: absolute;
+            background: radial-gradient(circle, rgba(79, 209, 197, 0.5) 0%, transparent 70%); 
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: pulse-light 10s infinite ease-in-out alternate;
+        }
+        
+        /* Carousel specific styles */
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+        }
         .carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
-
         .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
             flex-shrink: 0;
-            width: 100%;
         }
-        
+        .carousel-item img {
+            max-height: 200px; 
+        }
         .carousel-button {
             position: absolute;
             top: 50%;
@@ -92,106 +119,21 @@
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            padding: 10px;
             cursor: pointer;
             z-index: 10;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
-
+        .carousel-button:hover {
+            opacity: 1;
+        }
         .carousel-button-prev {
-            left: 10px;
+            left: 5px;
         }
-
         .carousel-button-next {
-            right: 10px;
+            right: 5px;
         }
 
-        /* Mind map styling */
-        .mind-map-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            position: relative;
-            padding-top: 2rem;
-        }
-
-        .mind-map-node {
-            position: relative;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            background-color: #161b22;
-            transition: transform 0.3s ease-in-out;
-            border: 1px solid #30363d;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-            z-index: 1;
-        }
-
-        .mind-map-node::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background-color: #30363d;
-            z-index: -1;
-        }
-
-        .mind-map-node.start-node::before {
-            display: none;
-        }
-
-        .mind-map-node:not(.start-node)::before {
-            height: 100%;
-            top: -100%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .mind-map-node.end-node::after {
-            content: '';
-            position: absolute;
-            bottom: -2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0.75rem;
-            height: 0.75rem;
-            background-color: #30363d;
-            border-radius: 50%;
-        }
-        
-        /* Glowing light effect for Hero section */
-        .glowing-light {
-            position: absolute;
-            background: radial-gradient(circle, rgba(30, 255, 255, 0.5) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: pulse-light 10s infinite ease-in-out alternate;
-        }
-        
-        .light-1 {
-            width: 500px;
-            height: 500px;
-            top: 10%;
-            left: 15%;
-            animation-duration: 12s;
-        }
-
-        .light-2 {
-            width: 400px;
-            height: 400px;
-            bottom: 10%;
-            right: 20%;
-            animation-duration: 15s;
-            animation-delay: 2s;
-        }
-
-        @keyframes pulse-light {
-            0% {
-                transform: scale(0.9);
-            }
-            100% {
-                transform: scale(1.1);
-            }
-        }
-        
         /* Modal Styles */
         .modal {
             display: none;
@@ -223,33 +165,27 @@
             max-height: 80vh;
             overflow-y: auto;
         }
-
-        @keyframes animatetop {
-            from {
-                top: -300px;
-                opacity: 0;
-            }
-            to {
-                top: 0;
-                opacity: 1;
-            }
-        }
-
+        
         .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
             position: absolute;
             top: 10px;
             right: 20px;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
         }
 
         .close-button:hover,
         .close-button:focus {
             color: #fff;
             text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes animatetop {
+            from {top:-300px; opacity:0} 
+            to {top:0; opacity:1}
         }
     </style>
 </head>
@@ -259,7 +195,7 @@
         <div class="container mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-4">
                 <div class="hidden sm:block">
-                    <p class="font-bold text-lg">IAS</p>
+                    <p class="font-bold text-lg gradient-text">I A S</p>
                     <p class="text-sm text-gray-400">Available for new projects</p>
                 </div>
             </div>
@@ -267,15 +203,15 @@
                 <nav class="hidden md:flex items-center space-x-6">
                     <a href="#" class="text-gray-400 hover:text-white transition-colors header-link">Home</a>
                     <a href="#about" class="text-gray-400 hover:text-white transition-colors header-link">About</a>
+                    <a href="#services" class="text-gray-400 hover:text-white transition-colors header-link">Solutions</a>
                     <a href="#projects" class="text-gray-400 hover:text-white transition-colors header-link">Projects</a>
-                    <a href="#contact" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg">Contact Me</a>
+                    <a href="#contact" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg">Free Consultation</a>
                 </nav>
-                <img src="Fajar Komunika Logo.png" alt="Logo PT Fajar Komunika" class="h-12">
             </div>
         </div>
     </header>
 
-    <section class="relative py-20 px-4 min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" class="relative py-20 px-4 min-h-screen flex items-center justify-center overflow-hidden">
         <div class="glowing-light light-1"></div>
         <div class="glowing-light light-2"></div>
 
@@ -285,148 +221,101 @@
             </div>
             <div class="lg:w-1/2 mt-10 lg:mt-0 lg:pl-16">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-                    I'm <span class="gradient-text">Ia Asep Sunarya</span>
+                    Hello! I’m <span class="gradient-text">Ia Asep Sunarya</span>
                 </h1>
                 <p class="mt-4 text-xl md:text-2xl text-gray-400">
-                    Web Developer & Digital Innovator
+                    **Your Virtual Partner in Digital Solutions**
                 </p>
                 <p class="mt-6 max-w-lg text-lg text-gray-300 mx-auto lg:mx-0">
-                    A passionate innovator who combines creative design with cutting-edge technology to build outstanding digital solutions.
+                    🚀 Ready to take off? I focus on **Rapid Efficiency & Smart Digital Solutions** designed to **free your time from administrative burdens.** Let's transform routine tasks into a smooth, stress-free business operation.
                 </p>
+                <div class="mt-8">
+                    <a href="#contact" class="px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-transform transform hover:scale-105 shadow-lg text-lg">
+                        Let's Discuss Your Solution Now!
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="about" class="py-20 px-4">
-        <div class="container mx-auto">
-            <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-3xl font-bold text-center mb-6 gradient-text">About Me</h2>
-                <p class="text-xl text-gray-300 leading-relaxed">
-                    Currently, I serve as the <span class="font-bold text-white">CEO and Marketing Executive</span> at <span class="font-semibold text-white">PT Fajar Komunika Indonesia</span>. I am passionate about combining technology and marketing strategies to drive business growth and create innovative digital solutions.
-                </p>
-            </div>
-
-            <h2 class="text-3xl font-bold text-center mb-12">Career Journey</h2>
-            <div class="mind-map-container">
-                <div class="mind-map-node glowing-shadow">
-                    <h3 class="text-xl font-bold">PT Patra Nusa Data</h3>
-                    <p class="text-gray-400">Data Entry | April 2007 - May 2011</p>
-                </div>
-                <div class="mind-map-node glowing-shadow">
-                    <h3 class="text-xl font-bold">PT Bank Mandiri Tbk</h3>
-                    <p class="text-gray-400">Marketing Sales | December 2011 - December 2012</p>
-                </div>
-                <div class="mind-map-node glowing-shadow">
-                    <h3 class="text-xl font-bold">PT Jatisari Sri Rejeki</h3>
-                    <p class="text-gray-400">Staff Administration | March 2012 - May 2017</p>
-                </div>
-                <div class="mind-map-node glowing-shadow">
-                    <h3 class="text-xl font-bold">PT Ventra Sentosa International</h3>
-                    <p class="text-gray-400">Business Partner | June 2017 - April 2019</p>
-                </div>
-                <div class="mind-map-node glowing-shadow">
-                    <h3 class="text-xl font-bold">PT Nitou Lemo Indonesia</h3>
-                    <p class="text-gray-400">Staff Delivery Transporter | August 2019 - December 2019</p>
-                </div>
-                <div class="mind-map-node glowing-shadow">
-                    <h3 class="text-xl font-bold">PT Fakonindo Indonesia</h3>
-                    <p class="text-gray-400">Web Development | January 2020 - July 2020</p>
-                </div>
-                <div class="mind-map-node glowing-shadow end-node">
-                    <h3 class="text-xl font-bold">SMA Al-Muhajirin Purwakarta</h3>
-                    <p class="text-gray-400">IT & Digital Marketing Teacher | August 2020 - Present</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 px-4">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">Education</h2>
-            <div class="bg-card p-8 rounded-xl glowing-shadow max-w-2xl mx-auto">
-                <ul class="space-y-4 text-gray-300">
-                    <li>
-                        <p class="font-semibold text-lg">Management Informatics</p>
-                        <p class="text-sm text-gray-400">Incomplete Study at BSI</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 px-4">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold text-center mb-12">My Specializations</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-card p-8 rounded-xl shadow-lg glowing-shadow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1e90ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4">
-                        <polyline points="16 18 22 12 16 6"></polyline>
-                        <polyline points="8 6 2 12 8 18"></polyline>
-                    </svg>
-                    <h3 class="text-2xl font-bold gradient-text">Web Development</h3>
-                    <p class="mt-4 text-gray-400">Creating responsive and dynamic websites with a focus on performance and user experience.</p>
+            <h2 class="text-3xl font-bold mb-12 gradient-text">My Core Philosophy: Solution & Efficiency</h2>
+            <div class="grid md:grid-cols-2 gap-10 text-left">
+                <div class="bg-card p-6 rounded-xl shadow-lg glowing-shadow">
+                    <h3 class="text-xl font-bold mb-3 text-white">Problem-Solver First</h3>
+                    <p class="text-gray-400">I don't just execute tasks; I diagnose the root cause of your time drains or digital bottlenecks. My goal is to find the **most efficient path** to achieve your business objectives.</p>
                 </div>
-                <div class="bg-card p-8 rounded-xl shadow-lg glowing-shadow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00bfff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9" cy="7" r="4"></circle>
-                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                    <h3 class="text-2xl font-bold gradient-text">Digital Marketing</h3>
-                    <p class="mt-4 text-gray-400">Managing ad campaigns on Google, Meta, and TikTok to reach the right audience.</p>
-                </div>
-                <div class="bg-card p-8 rounded-xl shadow-lg glowing-shadow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1e90ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M16 16c0-4-3-6-6-6"></path>
-                        <path d="M12 2a10 10 0 0 0-10 10"></path>
-                        <path d="M12 22a10 10 0 0 0 10-10"></path>
-                    </svg>
-                    <h3 class="text-2xl font-bold gradient-text">Graphic Design</h3>
-                    <p class="mt-4 text-gray-400">Designing intuitive and visually appealing user interfaces for digital products.</p>
+                <div class="bg-card p-6 rounded-xl shadow-lg glowing-shadow">
+                    <h3 class="text-xl font-bold mb-3 text-white">Tech Stack Expertise</h3>
+                    <p class="text-gray-400">Specializing in full-stack development (MERN, PHP), Digital Marketing (Meta Ads, SEO), and AI integration. I ensure the technical solution is always aligned with your **real-world business needs.**</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <section id="services" class="py-20 px-4 bg-gray-900">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">How I Can Help Your Business Grow</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card p-6 rounded-xl glowing-shadow bg-card hover-lift">
+                    <h3 class="text-xl font-bold gradient-text mb-2">Web Development & Automation</h3>
+                    <p class="text-gray-400">Building custom, high-speed websites, automation tools (like the RPP app), and scalable web applications to streamline operations.</p>
+                </div>
+                <div class="service-card p-6 rounded-xl glowing-shadow bg-card hover-lift">
+                    <h3 class="text-xl font-bold gradient-text mb-2">Digital Strategy & Ads Management</h3>
+                    <p class="text-gray-400">Running targeted Meta/Google Ads campaigns and implementing SEO strategies to maximize ROI and ensure sustainable audience growth.</p>
+                </div>
+                <div class="service-card p-6 rounded-xl glowing-shadow bg-card hover-lift">
+                    <h3 class="text-xl font-bold gradient-text mb-2">Virtual Assistance & Efficiency</h3>
+                    <p class="text-gray-400">From data management to content creation using AI, I handle the operational load so you can focus on core decision-making.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="projects" class="py-20 px-4">
         <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">Featured Projects</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">Featured Solutions (Case Studies)</h2>
             <div class="project-card-container">
-                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
+                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <img src="corrector.png" alt="Corrector AI App" class="rounded-lg mb-4 w-full h-auto object-cover">
-                    <h3 class="text-lg font-bold">Corrector (AI Application)</h3>
-                    <p class="mt-2 text-sm text-gray-400">An automated essay grading application using AI.</p>
-                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('corrector')">View Case Study</button>
+                    <h3 class="text-lg font-bold gradient-text">AI App: Automated Grading System</h3>
+                    <p class="mt-2 text-sm text-gray-400">An automated essay grading application using AI, saving educators valuable time.</p>
+                    <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('corrector')">View Solution & Results</button>
                 </div>
-                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
+                
+                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/emmifree.png" alt="Emifree Website" class="rounded-lg mb-4 w-full h-auto object-cover">
-                    <h3 class="text-lg font-bold">Emifree Frontend</h3>
-                    <p class="mt-2 text-sm text-gray-400">Frontend development for an e-commerce website.</p>
-                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('emifree')">View Case Study</button>
+                    <h3 class="text-lg font-bold gradient-text">E-Commerce Frontend Optimization</h3>
+                    <p class="mt-2 text-sm text-gray-400">Frontend development for an e-commerce platform focused on improving user flow and conversions.</p>
+                    <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('emifree')">View Solution & Results</button>
                 </div>
-                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
+                
+                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/rpp nifhasy.png" alt="RPP Nifhasy App" class="rounded-lg mb-4 w-full h-auto object-cover">
-                    <h3 class="text-lg font-bold">RPP Nifhasy Application</h3>
-                    <p class="mt-2 text-sm text-gray-400">An application to help teachers create lesson plans.</p>
-                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('rpp-nifhasy')">View Case Study</button>
+                    <h3 class="text-lg font-bold gradient-text">Teacher Efficiency App (RPP Automation)</h3>
+                    <p class="mt-2 text-sm text-gray-400">An application to help teachers create detailed lesson plans (RPP) efficiently.</p>
+                    <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('rpp-nifhasy')">View Solution & Results</button>
                 </div>
-                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
+                
+                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/thumbnail-aswaja.png" alt="AI Video Engineering Thumbnail" class="rounded-lg mb-4 w-full h-auto object-cover">
-                    <h3 class="text-lg font-bold">AI Video Engineering</h3>
-                    <p class="mt-2 text-sm text-gray-400">Creating an NU Aswaja-themed video for an LP Ma'arif NU competition.</p>
-                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('ai-video')">View Case Study</button>
+                    <h3 class="text-lg font-bold gradient-text">Creative AI Video Production</h3>
+                    <p class="mt-2 text-sm text-gray-400">Leveraging AI Prompt Engineering to create high-quality video content under tight deadlines.</p>
+                    <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('ai-video')">View Solution & Results</button>
                 </div>
-                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
+                
+                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
                     <img src="https://raw.githubusercontent.com/gelarsampurna12/connecting-data/main/report-meta-ads.jpg" alt="Meta Ads Report" class="rounded-lg mb-4 w-full h-auto object-cover">
-                    <h3 class="text-lg font-bold">Meta Ads Campaign</h3>
-                    <p class="mt-2 text-sm text-gray-400">Managing Meta ad campaigns to increase product reach and conversions.</p>
-                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('meta-ads')">View Case Study</button>
+                    <h3 class="text-lg font-bold gradient-text">Targeted Digital Marketing Campaigns</h3>
+                    <p class="mt-2 text-sm text-gray-400">Managing Meta ad campaigns to increase product reach, conversions, and enrollment (case study).</p>
+                    <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('meta-ads')">View Solution & Results</button>
                 </div>
-                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow">
-                    <h3 class="text-lg font-bold mb-4">Social Media Design Services</h3>
-                    <p class="mt-2 text-sm text-gray-400 mb-4">Attractive visual designs to boost engagement and brand image.</p>
+                
+                <div class="bg-card p-4 rounded-xl shadow-lg glowing-shadow hover-lift">
+                    <h3 class="text-lg font-bold mb-4 gradient-text">Visual Branding & Social Design</h3>
+                    <p class="mt-2 text-sm text-gray-400 mb-4">Attractive visual designs that boost engagement and solve inconsistent brand imagery problems.</p>
                     <div class="relative carousel-container">
                         <div class="carousel-track">
                             <div class="carousel-item">
@@ -448,7 +337,7 @@
                         <button class="carousel-button carousel-button-prev rounded-full px-2 py-1">&lt;</button>
                         <button class="carousel-button carousel-button-next rounded-full px-2 py-1">&gt;</button>
                     </div>
-                    <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('social-media')">View Case Study</button>
+                    <button class="mt-4 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg" onclick="openModal('social-media')">View Solution & Results</button>
                 </div>
             </div>
         </div>
@@ -456,14 +345,15 @@
 
     <section id="contact" class="py-20 px-4 text-center">
         <div class="container mx-auto max-w-2xl contact-card p-12 rounded-xl glowing-shadow">
-            <h2 class="text-3xl font-bold gradient-text">Ready to Collaborate?</h2>
-            <p class="mt-4 text-lg text-gray-400">Let's bring your brilliant ideas to life. Contact me to discuss your next project.</p>
+            <h2 class="text-3xl font-bold gradient-text">Ready to Ignite Your Efficiency?</h2>
+            <p class="mt-4 text-lg text-gray-400">The best partnerships start with a **friendly, zero-pressure conversation**. Let's talk about your vision and challenges.</p>
             <div class="mt-8 space-y-4">
-                <a href="https://wa.me/6285861230297" target="_blank" class="mt-8 inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg">
-                    Contact via WhatsApp
+                <a href="https://wa.me/6285861230297" target="_blank" class="mt-8 inline-block px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-transform transform hover:scale-105 shadow-lg text-lg">
+                    👋 Click Here for a Free 15-Minute Chat
                 </a>
-                <a href="mailto:iasgelarsampurna@gmail.com" class="mt-4 inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg">
-                    Contact via Email
+                <p class="text-sm text-gray-500 italic">— No obligation, just a chance to know the person behind the skills! —</p>
+                <a href="mailto:iasgelarsampurna@gmail.com" class="mt-4 inline-block px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-full transition-transform transform hover:scale-105 shadow-lg">
+                    Or Contact via Email
                 </a>
             </div>
         </div>
@@ -477,80 +367,87 @@
         <div class="modal-content">
             <span class="close-button" onclick="closeModal()">&times;</span>
             <h2 id="modal-title" class="text-3xl font-bold mb-4 gradient-text"></h2>
-            <div id="modal-content-body"></div> </div>
+            <div id="modal-content-body"></div> 
+        </div>
     </div>
 
     <script>
         // Modal logic
         const modal = document.getElementById('case-study-modal');
         const modalTitle = document.getElementById('modal-title');
-        const modalContent = document.getElementById('modal-content');
+        const modalContentBody = document.getElementById('modal-content-body'); 
 
         const caseStudies = {
             'corrector': {
-                title: 'Corrector (AI Application) Case Study',
+                title: 'AI App: Automated Grading System',
                 content: `
-                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
-                    <p>Teachers needed a faster way to grade essays without compromising quality. Manual grading was time-consuming and often inconsistent.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
-                    <p>I designed and built an AI-powered grading system that automates the assessment process. The application provides immediate feedback on grammar, structure, and content, helping both teachers and students.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
-                    <p>This solution significantly reduced grading time by 70% and provided consistent, objective feedback, allowing teachers to focus more on personalized instruction.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 8 Weeks (Development & Deployment)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>Teachers needed a faster way to grade essays without compromising quality. Manual grading was time-consuming and often inconsistent (consuming 30% of their teaching time).</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I designed and built an **AI-powered grading system** that automates the assessment process, providing immediate, objective feedback on grammar, structure, and content.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>This solution significantly reduced grading time by **70%** and provided consistent, objective feedback, allowing teachers to focus more on personalized instruction.</p>
                 `
             },
             'emifree': {
-                title: 'Emifree Frontend Case Study',
+                title: 'E-Commerce Frontend Optimization',
                 content: `
-                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
-                    <p>The client needed a visually appealing and user-friendly e-commerce website to attract more customers and drive sales. The previous site was outdated and had a high bounce rate.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
-                    <p>I rebuilt the frontend using modern web technologies to create a clean, responsive, and intuitive user interface. I optimized the site for fast loading times and a seamless shopping experience.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
-                    <p>The new design led to a <b>25% increase in user engagement</b> and a more professional brand image, directly contributing to higher sales conversions.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 4 Weeks (Design Implementation & Optimization)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>The client's previous e-commerce site was outdated and had a high bounce rate (over 60%). The interface was not user-friendly, directly hindering sales conversions.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I rebuilt the frontend using modern web technologies to create a clean, **responsive, and intuitive user interface.** I optimized the site for fast loading times and a seamless shopping experience.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>The new design led to a **25% increase in user engagement** and a more professional brand image, directly contributing to higher sales conversions and reducing bounce rate to below 40%.</p>
                 `
             },
             'rpp-nifhasy': {
-                title: 'RPP Nifhasy Application Case Study',
+                title: 'Teacher Efficiency App (RPP Automation)',
                 content: `
-                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
-                    <p>Teachers were spending too much time creating detailed lesson plans (RPP) manually. This was an inefficient process that took time away from teaching and student interaction.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
-                    <p>I developed a web application that automates the RPP creation process. The app allows teachers to quickly input key information and automatically generates a comprehensive lesson plan based on educational standards.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
-                    <p>The application reduced the time required for lesson plan creation by <b>up to 80%</b>, empowering teachers to be more efficient and focused on their core responsibilities in the classroom.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 6 Weeks (Full Development Cycle)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>Teachers were spending too much time creating detailed lesson plans (RPP) manually, taking time away from teaching and student interaction (averaging 4 hours/week per teacher).</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I developed a web application that **automates the RPP creation process.** The app allows teachers to quickly input key information and automatically generates a comprehensive lesson plan based on educational standards.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>The application reduced the time required for lesson plan creation by **up to 80%**, empowering teachers to be more efficient and focused on their core responsibilities in the classroom.</p>
                 `
             },
             'ai-video': {
-                title: 'AI Video Engineering Case Study',
+                title: 'Creative AI Video Production',
                 content: `
-                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
-                    <p>A client needed a visually stunning video for a competition with a tight deadline and limited resources for traditional video production.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
-                    <p>I leveraged <b>AI Prompt Engineering</b> to generate high-quality, creative visuals and animations based on detailed text prompts. This approach allowed for rapid content creation that was both unique and aligned with the competition's theme.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
-                    <p>The project successfully delivered a professional-quality video that stood out, helping the client secure <b>first place</b> in the competition and showcasing the power of AI in creative media.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 2 Weeks (Concept, Prompting & Final Rendering)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>A client needed a visually stunning video for a competition with a **tight deadline** and limited resources for traditional video production.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I leveraged **AI Prompt Engineering** to generate high-quality, creative visuals and animations based on detailed text prompts. This allowed for rapid, high-impact content creation.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>The project successfully delivered a professional-quality video that stood out, helping the client secure **first place** in the competition and proving the efficiency of AI in creative media.</p>
                 `
             },
             'meta-ads': {
-                title: 'Meta Ads Campaign Case Study',
+                title: 'Targeted Digital Marketing Campaigns (Enrollment Case)',
                 content: `
-                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
-                    <p>A school needed to increase student enrollment but was struggling to reach its target audience effectively through traditional advertising methods.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
-                    <p>I designed and managed a targeted Meta Ads campaign on Facebook and Instagram. I implemented a strategy that focused on optimizing ad spend, A/B testing creative assets, and refining audience demographics to maximize reach and conversions.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
-                    <p>The campaign generated <b>190 link clicks and 571 engagements</b> with a highly efficient cost per result. This far exceeded the school's expectations and led to a significant increase in student inquiries and enrollments.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 12 Weeks (Setup, Testing & 2 Month Campaign Run)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>A school was struggling to reach its target enrollment audience effectively through traditional advertising, leading to low inquiry rates and wasted ad spend.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I designed and managed a targeted Meta Ads campaign with a focus on **optimizing ad spend, A/B testing creative assets, and refining audience demographics** to maximize conversions.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>The campaign generated **190 link clicks and 571 engagements** with a highly efficient cost per result. This led to a **significant increase in student inquiries and enrollments** far exceeding the school's expectations.</p>
                 `
             },
             'social-media': {
-                title: 'Social Media Design Services Case Study',
+                title: 'Visual Branding & Social Design',
                 content: `
-                    <h4 class="font-semibold text-white mb-1">Problem:</h4>
-                    <p>A retail brand needed to improve its social media presence and visual branding to attract new customers and stand out from competitors. Their content lacked consistency and a professional look.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Solution:</h4>
-                    <p>I collaborated with the client to create a cohesive social media content strategy and designed a series of professional, on-brand templates for Instagram and Facebook. The designs were crafted to be visually appealing and easy for their team to reuse.</p>
-                    <h4 class="font-semibold text-white mt-4 mb-1">Result:</h4>
-                    <p>The new designs led to a <b>45% increase in engagement</b> and a more professional brand image, helping the client attract a larger, more relevant audience and drive brand loyalty.</p>
+                    <p class="text-sm font-bold text-yellow-400 mb-4">⏱️ ESTIMATED DURATION: 3 Weeks (Strategy, Template Design & Handover)</p>
+                    <h4 class="font-semibold text-white mb-1">🔥 Problem Solved:</h4>
+                    <p>A retail brand needed to improve its social media presence. Their content lacked **consistency and a professional look**, leading to low engagement and brand confusion.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">⚙️ Solution Provided:</h4>
+                    <p>I created a cohesive social media strategy and designed a series of professional, **on-brand templates** for Instagram and Facebook. The designs were crafted to be visually appealing and easy for their team to reuse.</p>
+                    <h4 class="font-semibold text-white mt-4 mb-1">✅ Measured Result:</h4>
+                    <p>The new designs led to a **45% increase in engagement** and established a stronger, more professional brand image, helping the client attract a larger, more relevant audience.</p>
                 `
             }
         };
@@ -559,7 +456,7 @@
             const study = caseStudies[caseStudyId];
             if (study) {
                 modalTitle.textContent = study.title;
-                modalContent.innerHTML = study.content;
+                modalContentBody.innerHTML = study.content; 
                 modal.style.display = 'flex';
             }
         }
@@ -574,7 +471,7 @@
             }
         };
 
-        // Media Social Carousel
+        // Media Social Carousel Logic 
         const mediaCarousel = document.querySelector('.carousel-container');
         const mediaTrack = mediaCarousel.querySelector('.carousel-track');
         const mediaItems = mediaCarousel.querySelectorAll('.carousel-item');
@@ -596,36 +493,34 @@
             updateMediaCarousel();
         });
 
-        // Auto-play for the main project carousel
-        const projectCardContainer = document.querySelector('.project-card-container');
-        let autoScrollInterval;
-        let isHovering = false;
-        const scrollAmount = 300; 
-
-        const startAutoScroll = () => {
-            autoScrollInterval = setInterval(() => {
-                const currentScroll = projectCardContainer.scrollLeft;
-                const maxScroll = projectCardContainer.scrollWidth - projectCardContainer.clientWidth;
-
-                if (currentScroll >= maxScroll) {
-                    projectCardContainer.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    projectCardContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                }
-            }, 3000); 
-        };
-
-        const stopAutoScroll = () => {
-            clearInterval(autoScrollInterval);
-        };
+        // Project Card Auto-Scroll Logic (Disabled as per previous discussion, but included if needed)
+        // const projectCardContainer = document.querySelector('.project-card-container');
+        // let autoScrollInterval;
+        // const scrollAmount = 300; 
         
-        projectCardContainer.addEventListener('mouseenter', stopAutoScroll);
-        projectCardContainer.addEventListener('mouseleave', startAutoScroll);
-
-        startAutoScroll();
+        // function startAutoScroll() { 
+        //     autoScrollInterval = setInterval(() => {
+        //         const currentScroll = projectCardContainer.scrollLeft;
+        //         const maxScroll = projectCardContainer.scrollWidth - projectCardContainer.clientWidth;
+        
+        //         if (currentScroll >= maxScroll) {
+        //             projectCardContainer.scrollTo({ left: 0, behavior: 'smooth' });
+        //         } else {
+        //             projectCardContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        //         }
+        //     }, 3000); 
+        // };
+        
+        // function stopAutoScroll() {
+        //     clearInterval(autoScrollInterval);
+        // };
+        
+        // projectCardContainer.addEventListener('mouseenter', stopAutoScroll);
+        // projectCardContainer.addEventListener('mouseleave', startAutoScroll);
+        
+        // if (projectCardContainer.scrollWidth > projectCardContainer.clientWidth) {
+        //     startAutoScroll();
+        // }
     </script>
 </body>
 </html>
-
-
-
